@@ -18,8 +18,9 @@ services:
         value: production
 
   # Frontend Service (Static Site)
-  - type: static_site
+  - type: web
     name: expense-tracker-frontend
+    env: static
     plan: free
     rootDir: frontend
     buildCommand: npm install && npm run build
