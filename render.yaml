@@ -1,0 +1,30 @@
+services:
+  # Backend Service
+  - type: web
+    name: expense-tracker-backend
+    env: node
+    plan: free
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: node index.js
+    envVars:
+      - key: PORT
+        value: 5000
+      - key: MONGO_URI
+        sync: false # User will set this in Render UI
+      - key: JWT_SECRET
+        sync: false # User will set this in Render UI
+      - key: NODE_ENV
+        value: production
+
+  # Frontend Service (Static Site)
+  - type: web
+    name: expense-tracker-frontend
+    env: static
+    plan: free
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    publishDir: dist
+    envVars:
+      - key: VITE_API_URL
+        value: https://expense-tracker-backend.onrender.com/api # User might need to update this after backend is up
