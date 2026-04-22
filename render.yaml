@@ -11,16 +11,15 @@ services:
       - key: PORT
         value: 5000
       - key: MONGO_URI
-        sync: false # User will set this in Render UI
+        sync: false
       - key: JWT_SECRET
-        sync: false # User will set this in Render UI
+        sync: false
       - key: NODE_ENV
         value: production
 
-  # Frontend Service (Static Site)
-  - type: web
-    name: expense-tracker-frontend
-    env: static
+# Frontend Service (Static Site)
+static_sites:
+  - name: expense-tracker-frontend
     plan: free
     rootDir: frontend
     buildCommand: npm install && npm run build
