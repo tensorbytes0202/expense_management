@@ -18,13 +18,12 @@ services:
         value: production
 
   # Frontend Service (Static Site)
-  - type: web
+  - type: static_site
     name: expense-tracker-frontend
-    env: static
     plan: free
     rootDir: frontend
     buildCommand: npm install && npm run build
     publishDir: dist
     envVars:
       - key: VITE_API_URL
-        value: https://expense-tracker-backend.onrender.com/api # User might need to update this after backend is up
+        value: https://expense-tracker-backend.onrender.com/api
